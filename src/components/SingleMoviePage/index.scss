@@ -1,0 +1,18 @@
+.single-movie.bannerCont {
+  height: 300px;
+  position: relative;
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    content: '';
+    background: rgba(0, 0, 0, 0.5)
+  }
+  img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+}
