@@ -1,19 +1,23 @@
 import { observable, action, computed, toJS } from "mobx";
 import axios from "axios";
-class MobxStore {
+
+class MoviesStore {
   @observable movieList = null;
+  @observable loading = false;
   @observable pages = 0;
   @observable page = 1;
-  @observable movie = null;
 
   @action
   getMovieList = async () => {
+    this.loading = true;
     try {
       const res = await axios.get(`/movie/now_playing?page=${this.page}`);
       this.movieList = res.data.results;
       this.pages = res.data.total_pages;
       this.page = res.data.page;
+      this.loading = false;
     } catch (err) {
+      this.loading = false;
       throw err;
     }
   };
@@ -24,20 +28,6 @@ class MobxStore {
     this.getMovieList();
   };
 
-  @action
-  getSingleMovie = async id => {
-    try {
-      const res = await axios.get(`/movie/${id}`);
-      this.movie = res.data;
-    } catch (err) {
-      throw err;
-    }
-  };
-
-  @computed get SingleMovie() {
-    return toJS(this.movie);
-  }
-
   @computed get MovieList() {
     return toJS(this.movieList);
   }
@@ -46,4 +36,4 @@ class MobxStore {
   }
 }
 
-export default new MobxStore();
+export default new MoviesStore();

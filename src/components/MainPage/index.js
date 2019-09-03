@@ -3,25 +3,31 @@ import { inject, observer } from "mobx-react";
 import MovieList from "./MovieList";
 import ReactPaginate from "react-paginate";
 import "./index.scss";
+import CheckRenderStatus from "../../helpers/CheckRenderStatus";
 
-@inject("MovieStore")
+@inject("MoviesStore")
 @observer
 class MainPage extends Component {
   componentDidMount() {
-    this.props.MovieStore.getMovieList();
+    this.props.MoviesStore.getMovieList();
   }
 
   pageChange = prop => {
-    this.props.MovieStore.activePageHandler(prop.selected);
+    this.props.MoviesStore.activePageHandler(prop.selected);
   };
   render() {
-    const { MovieStore } = this.props;
+    const { MoviesStore } = this.props;
     return (
       <div className="container py-5">
         <div className="row">
-          <MovieList movieList={MovieStore.MovieList} />
+          <CheckRenderStatus
+            loading={MoviesStore.loading}
+            items={MoviesStore.MovieList}
+          >
+            <MovieList movieList={MoviesStore.MovieList} />
+          </CheckRenderStatus>
           <ReactPaginate
-            pageCount={MovieStore.PageAmount}
+            pageCount={MoviesStore.PageAmount}
             previousLabel="previous"
             nextLabel="next"
             pageRangeDisplayed={2}
@@ -35,7 +41,7 @@ class MainPage extends Component {
             nextClassName="page-item"
             activeClassName="active"
             onPageChange={this.pageChange}
-            initialPage={MovieStore.page - 1}
+            initialPage={MoviesStore.page - 1}
             disableInitialCallback={true}
           />
         </div>
