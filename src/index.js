@@ -6,6 +6,7 @@ import Routes from "./Routes";
 import { Provider } from "mobx-react";
 import "./config/http";
 import { stores } from "./stores";
+import "./index.scss";
 
 const App = (
   <Provider {...stores}>

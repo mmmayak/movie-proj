@@ -14,6 +14,11 @@ class SingleMovieStore {
     }
   };
 
+  @action
+  resetMovie = () => {
+    this.movie = null;
+  };
+
   @computed get SingleMovie() {
     return toJS(this.movie);
   }

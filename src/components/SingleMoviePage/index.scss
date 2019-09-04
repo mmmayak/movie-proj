@@ -1,18 +1,26 @@
-.single-movie.bannerCont {
-  height: 300px;
+.banner {
+  height: 600px;
   position: relative;
-  &::after {
+  &__titleCont {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  &__title {
+    position: relative;
+  }
+  &__subtitle {
+    position: relative;
+  }
+  &::before {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    content: '';
-    background: rgba(0, 0, 0, 0.5)
-  }
-  img {
-    height: 100%;
-    object-fit: cover;
-    width: 100%;
+    content: "";
+    background: rgba(0, 0, 0, 0.4);
   }
 }

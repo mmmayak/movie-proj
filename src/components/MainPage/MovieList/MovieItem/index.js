@@ -1,13 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { ImageCheck } from "../../../../helpers/imageCheck";
 import "./index.scss";
-
-export function ImageCheck(img) {
-  if (img.endsWith("null")) {
-    return "https://www.elegantthemes.com/blog/wp-content/uploads/2017/08/featuredimage.jpg";
-  }
-  return img;
-}
 
 export default function MovieItem(props) {
   const {
