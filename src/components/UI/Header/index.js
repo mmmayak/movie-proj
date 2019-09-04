@@ -28,8 +28,8 @@ export default function Header() {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/">
-              Features
+            <NavLink className="nav-link" to="/favorites">
+              Favorites
             </NavLink>
           </li>
         </ul>

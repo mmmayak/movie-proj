@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ImageCheck } from "../../../../helpers/imageCheck";
+import { ImageCheck } from "../../../helpers/imageCheck";
 import "./index.scss";
 
 export default function MovieItem(props) {

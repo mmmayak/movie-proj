@@ -15,6 +15,7 @@ class MainPage extends Component {
   pageChange = prop => {
     this.props.MoviesStore.activePageHandler(prop.selected);
   };
+
   render() {
     const { MoviesStore } = this.props;
     return (
