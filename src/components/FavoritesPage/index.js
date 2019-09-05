@@ -6,9 +6,7 @@ import FavoritesList from "./FavoritesList";
 @inject("FavoritesStore")
 @observer
 class FavoritesPage extends Component {
-  componentDidMount() {
-    this.props.FavoritesStore.getFavoriteList();
-  }
+  
   render() {
     const { FavoritesStore } = this.props;
     return (

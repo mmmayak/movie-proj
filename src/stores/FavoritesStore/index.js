@@ -1,7 +1,8 @@
 import { observable, action, toJS, computed } from "mobx";
+import { persist, create } from "mobx-persist";
 
 class FavoritesStore {
-  @observable favoriteList = [];
+  @persist('list') @observable favoriteList = [];
   @observable loading = false;
 
   @action
@@ -19,7 +20,8 @@ class FavoritesStore {
 
   @action
   setFavorite = favorite => {
-    const newFavorites = [...this.favoriteList, favorite];
+    const getFromStorage = JSON.parse(localStorage.getItem("favorites")) || [];
+    const newFavorites = [...getFromStorage, favorite];
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
     this.favoriteList = newFavorites;
     this.loading = false;
@@ -29,5 +31,10 @@ class FavoritesStore {
     return toJS(this.favoriteList);
   }
 }
+
+const hydrate = create({
+  storage: localStorage,
+  jsonify: false
+})
 
 export default new FavoritesStore();

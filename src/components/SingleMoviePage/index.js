@@ -5,6 +5,7 @@ import moment from "moment";
 import "./index.scss";
 import CheckMovieStatus from "../../helpers/checkMovieStatus";
 import CheckRatingAverage from "../../helpers/checkRatingAverage";
+import { CheckOnFavorites } from "../../helpers/checkOnFavorites";
 
 @inject("SingleMovieStore")
 @inject("FavoritesStore")
@@ -18,7 +19,7 @@ class SingleMoviePage extends Component {
     this.props.SingleMovieStore.resetMovie();
   }
 
-  addToFavorite = movie => {
+  addToFavorites = movie => {
     this.props.FavoritesStore.setFavorite(movie);
   };
 
@@ -76,12 +77,11 @@ class SingleMoviePage extends Component {
                   <p>{SingleMovie.original_language}</p>
                 </div>
                 <p>{SingleMovie.overview}</p>
-                <button
-                  className="btn btn-primary btn-lg"
-                  onClick={() => this.addToFavorite(SingleMovie)}
-                >
-                  Add to favorite
-                </button>
+                <CheckOnFavorites
+                  id={SingleMovie.id}
+                  add={() => this.addToFavorites(SingleMovie)}
+                  remove={() => console.log("remove")}
+                />
               </div>
             </div>
           </div>
