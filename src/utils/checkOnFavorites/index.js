@@ -1,10 +1,9 @@
-import React from "react";
+/* import React from "react";
 
-export function CheckOnFavorites({ id, remove, add }) {
+export function CheckOnFavorites({ inStorage, remove, add }) {
   let renderButton;
-  const storage = JSON.parse(localStorage.getItem("favorites")) || [];
-  const findInLocal = storage.find(item => item.id == id);
-  if (findInLocal) {
+  
+  if (inStorage) {
     renderButton = (
       <button className="btn btn-primary" onClick={remove}>
         Remove from Favorites
@@ -20,3 +19,4 @@ export function CheckOnFavorites({ id, remove, add }) {
 
   return <div>{renderButton}</div>;
 }
+ */

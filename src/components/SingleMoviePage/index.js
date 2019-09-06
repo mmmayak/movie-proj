@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { ImageCheck } from "../../helpers/imageCheck";
+import { ImageCheck } from "../../utils/imageCheck";
 import moment from "moment";
 import "./index.scss";
-import CheckMovieStatus from "../../helpers/checkMovieStatus";
-import CheckRatingAverage from "../../helpers/checkRatingAverage";
-import { CheckOnFavorites } from "../../helpers/checkOnFavorites";
+import CheckMovieStatus from "../../utils/checkMovieStatus";
+import CheckRatingAverage from "../../utils/checkRatingAverage";
+import { CheckOnFavorites } from "../../utils/checkOnFavorites";
 
 @inject("SingleMovieStore")
 @inject("FavoritesStore")
 @observer
 class SingleMoviePage extends Component {
-  componentDidMount() {
-    this.props.SingleMovieStore.getMovie(this.props.match.params.id);
+  state = {
+    inStorage: false
+  };
+
+  async componentDidMount() {
+    await this.props.SingleMovieStore.getMovie(this.props.match.params.id);
+    this.checkInStorage();
   }
 
   componentWillUnmount() {
@@ -23,7 +28,23 @@ class SingleMoviePage extends Component {
     this.props.FavoritesStore.setFavorite(movie);
   };
 
+  checkInStorage = () => {
+    const findInStorage = this.props.FavoritesStore.FavoritesList.find(
+      item => item.id == this.props.match.params.id
+    );
+    if (findInStorage) {
+      this.setState({
+        inStorage: true
+      });
+    } else {
+      this.setState({
+        inStorage: false
+      });
+    }
+  };
+
   render() {
+    console.log(this.state.inStorage)
     const { SingleMovieStore } = this.props;
     let renderMovieItem;
     if (SingleMovieStore.SingleMovie) {
@@ -77,11 +98,11 @@ class SingleMoviePage extends Component {
                   <p>{SingleMovie.original_language}</p>
                 </div>
                 <p>{SingleMovie.overview}</p>
-                <CheckOnFavorites
+                {/* <CheckOnFavorites
                   id={SingleMovie.id}
                   add={() => this.addToFavorites(SingleMovie)}
                   remove={() => console.log("remove")}
-                />
+                /> */}
               </div>
             </div>
           </div>

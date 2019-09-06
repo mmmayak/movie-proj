@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ImageCheck } from "../../../helpers/imageCheck";
+import { ImageCheck } from "../imageCheck";
 import "./index.scss";
 
-export default function MovieItem(props) {
+export default function MovieCard(props) {
   const {
     item: { id, poster_path, title, overview }
   } = props;

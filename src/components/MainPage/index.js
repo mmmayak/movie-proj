@@ -3,7 +3,7 @@ import { inject, observer } from "mobx-react";
 import MovieList from "./MovieList";
 import ReactPaginate from "react-paginate";
 import "./index.scss";
-import CheckRenderStatus from "../../helpers/checkRenderStatus";
+import CheckRenderStatus from "../../utils/checkRenderStatus";
 
 @inject("MoviesStore")
 @observer

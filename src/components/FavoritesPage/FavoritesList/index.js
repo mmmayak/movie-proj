@@ -1,6 +1,6 @@
 import React from "react";
-import MovieItem from "../../UI/MovieItem";
+import MovieCard from "../../../utils/MovieCard";
 
 export default function FavoiritesList({ favoritesList }) {
-  return favoritesList.map(item => <MovieItem key={item.id} item={item} />);
+  return favoritesList.map(item => <MovieCard key={item.id} item={item} />);
 }
