@@ -9,7 +9,7 @@ class Routes extends Component {
   render() {
     return (
       <>
-        <Header />
+        <Header/>
         <Switch>
           <Route path="/" exact component={MainPage} />
           <Route path="/movie/:id" exact component={SingleMoviePage} />

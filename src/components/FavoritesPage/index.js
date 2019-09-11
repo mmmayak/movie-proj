@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import CheckRenderStatus from "../../utils/checkRenderStatus";
-import FavoritesList from "./FavoritesList";
+import MovieList from "../../utils/MovieList";
 
 @inject("FavoritesStore")
 @observer
@@ -15,7 +15,7 @@ class FavoritesPage extends Component {
             loading={FavoritesStore.loading}
             items={FavoritesStore.FavoritesList}
           >
-            <FavoritesList favoritesList={FavoritesStore.FavoritesList} />
+            <MovieList list={FavoritesStore.FavoritesList} />
           </CheckRenderStatus>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import MovieList from "./MovieList";
+import MovieList from "../../utils/MovieList";
 import ReactPaginate from "react-paginate";
 import "./index.scss";
 import CheckRenderStatus from "../../utils/checkRenderStatus";
@@ -25,7 +25,7 @@ class MainPage extends Component {
             loading={MoviesStore.loading}
             items={MoviesStore.MovieList}
           >
-            <MovieList movieList={MoviesStore.MovieList} />
+            <MovieList list={MoviesStore.MovieList} />
           </CheckRenderStatus>
           <ReactPaginate
             pageCount={MoviesStore.PageAmount}

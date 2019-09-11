@@ -23,6 +23,16 @@ class MoviesStore {
   };
 
   @action
+  fetchMovies = async () => {
+    try {
+      const res = await axios.get('/movie/now_playing');
+      this.movieList = res.data.results;
+    }catch(err){
+
+    }
+  }
+
+  @action
   activePageHandler = async page => {
     this.page = page + 1;
     this.getMovieList();

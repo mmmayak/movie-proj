@@ -1,22 +1,60 @@
-/* import React from "react";
+import React, { Component } from "react";
+import {withRouter} from 'react-router';
+ class CheckOnFavorites extends Component {
+  state = {
+    inStorage: false
+  };
 
-export function CheckOnFavorites({ inStorage, remove, add }) {
-  let renderButton;
+  componentDidMount(){
+    this.checkInStorage();
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.favoriteList.length !== this.props.favoriteList.length){
+      this.checkInStorage();
+    }
+  }
   
-  if (inStorage) {
-    renderButton = (
-      <button className="btn btn-primary" onClick={remove}>
-        Remove from Favorites
-      </button>
+  checkInStorage = () => {
+    const findInStorage = this.props.favoriteList.find(
+      item => item.id === +this.props.match.params.id
     );
-  } else {
-    renderButton = (
-      <button className="btn btn-success" onClick={add}>
-        Add to Favorites
-      </button>
-    );
+    if (findInStorage) {
+      this.setState({
+        inStorage: true
+      });
+    } else {
+      this.setState({
+        inStorage: false
+      });
+    }
+  };
+
+  addToFavorites = () => {
+    this.props.favoritesStore.setFavorite(this.props.singleMovie);
+  };
+
+  removeFromFavorites = () => {
+    this.props.favoritesStore.removeFromFavorite(this.props.singleMovie.id)
   }
 
-  return <div>{renderButton}</div>;
+  render() {
+    const { inStorage } = this.state;
+    let renderButton;
+    if (inStorage) {
+      renderButton = (
+        <button className="btn btn-primary" onClick={this.removeFromFavorites}>
+          Remove from Favorites
+        </button>
+      );
+    } else {
+      renderButton = (
+        <button className="btn btn-success" onClick={this.addToFavorites}>
+          Add to Favorites
+        </button>
+      );
+    }
+    return <div>{renderButton}</div>;
+  }
 }
- */
+
+export default withRouter(CheckOnFavorites);
