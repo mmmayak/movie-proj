@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ImageCheck } from "../imageCheck";
+import imageCheck from "../imageCheck";
 import "./index.scss";
 
 export default function MovieCard(props) {
@@ -11,7 +11,7 @@ export default function MovieCard(props) {
     <div className="col-lg-3 col-md-4 mb-3 card-item">
       <div className="card">
         <img
-          src={ImageCheck(`http://image.tmdb.org/t/p/w342${poster_path}`)}
+          src={imageCheck(`http://image.tmdb.org/t/p/w342${poster_path}`)}
           className="card-img-top card-item__image"
           alt="..."
         />

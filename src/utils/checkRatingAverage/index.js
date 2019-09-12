@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CheckRatingAverage(rating) {
+export default function checkRatingAverage(rating) {
   let ratingClassName;
   if (rating < 3) {
     ratingClassName = "text-primary";

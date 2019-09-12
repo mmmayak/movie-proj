@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import MovieList from "../../utils/MovieList";
+import MovieList from "../../../utils/MovieList";
 import ReactPaginate from "react-paginate";
 import "./index.scss";
-import CheckRenderStatus from "../../utils/checkRenderStatus";
+import CheckRenderStatus from "../../../utils/checkRenderStatus";
 
 @inject("MoviesStore")
 @observer

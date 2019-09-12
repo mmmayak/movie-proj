@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { ImageCheck } from "../../utils/imageCheck";
+import imageCheck from "../../../utils/imageCheck";
 import moment from "moment";
 import "./index.scss";
-import CheckMovieStatus from "../../utils/checkMovieStatus";
-import CheckRatingAverage from "../../utils/checkRatingAverage";
-import CheckOnFavorites, { checkOnFavorites } from "../../utils/checkOnFavorites";
+import checkMovieStatus from "../../../utils/checkMovieStatus";
+import CheckOnFavorites from "../../../utils/checkOnFavorites";
+import checkRatingAverage from "../../../utils/checkRatingAverage";
 
 @inject("SingleMovieStore", "FavoritesStore")
 @observer
@@ -18,8 +18,6 @@ class SingleMoviePage extends Component {
     this.props.SingleMovieStore.resetMovie();
   }
 
-
-
   render() {
     const { SingleMovieStore } = this.props;
     let renderMovieItem;
@@ -30,7 +28,7 @@ class SingleMoviePage extends Component {
           <div
             className="single-movie banner"
             style={{
-              background: `url(${ImageCheck(
+              background: `url(${imageCheck(
                 `http://image.tmdb.org/t/p/original${SingleMovie.backdrop_path}`
               )}) no-repeat center center`,
               backgroundSize: "cover"
@@ -49,7 +47,7 @@ class SingleMoviePage extends Component {
             <div className="row">
               <div className="col-md-4 text-center">
                 <img
-                  src={ImageCheck(
+                  src={imageCheck(
                     `http://image.tmdb.org/t/p/w342${SingleMovie.poster_path}`
                   )}
                   alt="poster"
@@ -63,22 +61,22 @@ class SingleMoviePage extends Component {
                 </div>
                 <div className="mt-2 d-flex">
                   <h5 className="mr-2">Status:</h5>
-                  <CheckMovieStatus status={SingleMovie.status} />
+                  {checkMovieStatus(SingleMovie.status)}
                 </div>
                 <div className="mt-2 d-flex">
                   <h5 className="mr-2">Rating:</h5>
-                  {CheckRatingAverage(SingleMovie.vote_average)}
+                  {checkRatingAverage(SingleMovie.vote_average)}
                 </div>
                 <div className="mt-2 d-flex">
                   <h5 className="mr-2">Original language:</h5>
                   <p>{SingleMovie.original_language}</p>
                 </div>
                 <p>{SingleMovie.overview}</p>
-                <CheckOnFavorites 
+                <CheckOnFavorites
                   favoriteList={this.props.FavoritesStore.FavoritesList}
                   favoritesStore={this.props.FavoritesStore}
                   singleMovie={SingleMovie}
-                  />
+                />
               </div>
             </div>
           </div>

@@ -8,6 +8,7 @@ import { inject, observer } from "mobx-react";
 @observer
 class Header extends Component {
   render() {
+    const { FavoritesList } = this.props.FavoritesStore;
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
         <NavLink className="navbar-brand navbar__imgCont" to="/">
@@ -34,9 +35,12 @@ class Header extends Component {
             <li className="nav-item">
               <NavLink className="nav-link" to="/favorites">
                 Favorites
-                <span className="badge badge-dark">
-                 {this.props.FavoritesStore.FavoritesList.length}
-                </span>
+                <span className="badge badge-dark">{FavoritesList.length}</span>
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink exact className="nav-link" to="/sign-up">
+                Sign Up
               </NavLink>
             </li>
           </ul>

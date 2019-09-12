@@ -8,7 +8,7 @@ import {withRouter} from 'react-router';
   componentDidMount(){
     this.checkInStorage();
   }
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if(prevProps.favoriteList.length !== this.props.favoriteList.length){
       this.checkInStorage();
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CheckMovieStatus({status}) {
+export default function checkMovieStatus(status) {
   let statusClassName;
   if(status.toLowerCase() === 'released'){
     statusClassName = 'text-primary';
